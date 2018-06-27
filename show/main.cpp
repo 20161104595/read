@@ -18,12 +18,15 @@ using namespace std;
     double score[10];
     double final_score;
 };*/
+/*int read()
+{
+    
+};*/
 int main(int argc, const char * argv[]) {
     // insert code here...
     FILE *fp1;
     FILE *fp2;
-    //float score[4];
-    int i,j,temp,score[4];
+    int i,j,temp,score[8];
     float ave=0;
     fp1=fopen("//Users//a20161104595//Desktop//show//fp1.csv","r+");
     fp2=fopen("//Users//a20161104595//Desktop//show//fp2.csv","r+");
@@ -31,11 +34,26 @@ int main(int argc, const char * argv[]) {
     //{
     //    printf("要打开的文件不存在");
     //}
-    std::cout<<"请输入四位评委的打分:\n";
-    for(i=0;i<4;i++)
+    cout<<"－－－－－欢迎来到选秀评分系统－－－－－"<<endl;
+    cout<<"－－－－－1.查看评委信息  －－－－－－"<<endl;
+    cout<<"－－－－－2.查看选手信息  －－－－－－"<<endl;
+    cout<<"－－－－－3.进行评分     －－－－－－"<<endl;
+    cout<<"－－－－－4.退出系统     －－－－－－"<<endl;
+    while{
+        case1:
+        break;
+        case2:
+        break;
+        case 3:
+        break;
+        case 4:
+        break;
+    }
+    std::cout<<"请输入八位评委的打分:\n";
+    for(i=0;i<8;i++)
         cin>>score[i];
-        for(i=0;i<4;i++)
-            for(j=i+1;j<4;j++)
+        for(i=0;i<8;i++)
+            for(j=i+1;j<8;j++)
             {
                 if(score[i]>score[j])
                 {
@@ -44,12 +62,12 @@ int main(int argc, const char * argv[]) {
                     score[j]=temp;
                 }
             }
-        for(i=1;i<3;i++)
+        for(i=1;i<7;i++)
             ave+=score[i];
-             ave=ave/2;
+             ave=ave/6;
     cout<<"该选手的最后得分为:"<<ave<<endl;
         system("pause");
-        //return 0;
+        return 0;
         
 }
 
