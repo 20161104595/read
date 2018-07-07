@@ -11,47 +11,48 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
 using namespace std;
-/*struct Student{
-    int name;
-    int sex;
-    int tel;
-    int program_name;
-    int clas;
-    double score[10];
-    double final_score;
-};*/
-/*int read()
-{
-    
-};*/
 string Trim(string& str)
 {
     str.erase(0,str.find_first_not_of(" \t\r\n"));
     str.erase(str.find_last_not_of(" \t\r\n") + 1);
     return str;
 }
-
-
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    //FILE *fp1;
-    //FILE *fp2;
-    int i,j,temp,score[8];
-    float ave=0;
-    //fp1=fopen("//Users//a20161104595//Desktop//show//fp1.csv","r+");
-    //fp2=fopen("//Users//a20161104595//Desktop//show//fp2.csv","r+");
-    ifstream fin("/Users/a20161104595/Desktop/show/fp1.csv");
+int menu_select()//菜单
+{
+    int MenuItem;
     
+    cout<<"\n";
+    cout<<"         | ********* 欢迎来到评分系统*********   |          \n";
+    cout<<"         | ---------------------------------- |          \n";
+    cout<<"         |	  1 --- 显示学生信息	             |          \n";
+    cout<<"         |	  2 --- 显示裁判信息	             |          \n";
+    cout<<"         |	  3 --- 裁判评分                   |          \n";
+    cout<<"         |	  4 --- 排序       	             |           \n";
+    cout<<"         |	  0 --- 退出系统  	             |            \n";
+    
+    do
+    {
+        printf("\n请输入选项（0－4）：");
+        fflush(stdin);
+        scanf("%d",&MenuItem);
+    }
+    while(MenuItem<0||MenuItem>4);
+    
+    return MenuItem;
+}
+int teacher_informations()//读取裁判信息
+{
+    ifstream fin("/Users/a20161104595/Desktop/show/fp1.csv");
     string line;
-    while (getline(fin, line)) {
-        //cout << line << endl;
-        
+    while (getline(fin, line))
+    {
         istringstream sin(line);
         vector<string> fields;
         string field;
-        while (getline(sin, field, ',')) {
+    
+        while (getline(sin, field, ','))
+        {
             fields.push_back(field);
         }
         string name = Trim(fields[0]);
@@ -59,10 +60,36 @@ int main(int argc, const char * argv[]) {
         string birthday = Trim(fields[2]);
         cout << name << "\t" << age << "\t" << birthday << endl;
     }
-
-    std::cout<<"请输入八位评委的打分:\n";
-    for(i=0;i<8;i++)
-        cin>>score[i];
+    return 0;
+}
+int student_informations()//读取学生信息
+{
+    ifstream fin("/Users/a20161104595/Desktop/show/fp2.csv");
+    string line;
+    while (getline(fin, line))
+    {
+        istringstream sin(line);
+        vector<string> fields;
+        string field;
+        
+        while (getline(sin, field, ','))
+        {
+            fields.push_back(field);
+        }
+        string name = Trim(fields[0]);
+        string age = Trim(fields[1]);
+        string birthday = Trim(fields[2]);
+        cout << name << "\t" << age << "\t" << birthday << endl;
+    }
+    return 0;
+}
+void input()//裁判打分
+{
+        int i,j,temp,score[8];
+        float ave=0;
+        std::cout<<"请输入八位评委的打分:\n";
+        for(i=0;i<8;i++)
+            cin>>score[i];
         for(i=0;i<8;i++)
             for(j=i+1;j<8;j++)
             {
@@ -75,12 +102,33 @@ int main(int argc, const char * argv[]) {
             }
         for(i=1;i<7;i++)
             ave+=score[i];
-             ave=ave/6;
-    cout<<"该选手的最后得分为:"<<ave<<endl;
+            ave=ave/6;
+        cout<<"该选手的最后得分为:"<<ave<<endl;
         system("pause");
-        return 0;
 }
-
-
-
-
+    
+int main()
+{
+    // insert code here...
+    while(1)
+    {
+        switch(menu_select())
+        {
+            case 1:
+                student_informations();
+                break;
+            case 2:
+                teacher_informations();
+                break;
+            case 3:
+                input();
+                break;
+            case 4:
+                
+                break;
+            case 0:
+                cout<<"Thank you for using！\n";
+                return 0;
+         }
+     }
+}
