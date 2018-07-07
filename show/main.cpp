@@ -43,7 +43,7 @@ int menu_select()//菜单
 }
 int teacher_informations()//读取裁判信息
 {
-    ifstream fin("/Users/a20161104595/Desktop/show/fp1.csv");
+    ifstream fin("/Users/a20161104595/Desktop/show/fp1 3.csv");
     string line;
     while (getline(fin, line))
     {
@@ -77,9 +77,12 @@ int student_informations()//读取学生信息
             fields.push_back(field);
         }
         string name = Trim(fields[0]);
-        string age = Trim(fields[1]);
-        string birthday = Trim(fields[2]);
-        cout << name << "\t" << age << "\t" << birthday << endl;
+        string sex = Trim(fields[1]);
+        string program_name = Trim(fields[2]);
+        string program_form = Trim(fields[3]);
+        string clas = Trim(fields[4]);
+        string tel = Trim(fields[5]);
+        cout << name << "\t" << sex << "\t"<< program_form <<"\t "<< program_name <<"\t "<< clas <<"\t "<< tel <<"\t " << endl;
     }
     return 0;
 }
@@ -104,7 +107,7 @@ void input()//裁判打分
             ave+=score[i];
             ave=ave/6;
         cout<<"该选手的最后得分为:"<<ave<<endl;
-        system("pause");
+        //system("pause");
 }
     
 int main()
